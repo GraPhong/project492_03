@@ -1,4 +1,5 @@
 "use client"
+import React from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react";
@@ -33,14 +34,14 @@ const Navbar = () => {
         <nav className=" bg-violet-400 z-50">
             <div className="h-10vh flex justify-between lg:py-5 px-20 py-8 border-b">
                 <div className="flex items-center flex-l">
-                    <h1 className="text-4xl font-bold text-white">CMU Assist</h1>
+                    <Link className="text-4xl font-bold text-white" href={"home"}>CMU Assist</Link>
                 </div>
                 <div className="lg:flex md-flex flex-1 justify-center items font-normal hidden">
                     <ul className="flex gap-8 mr-16 text-2xl text-white">
                         <Link href={"home"}>
                             <li className="hover:text-black transition border-b-2 border-white hover:border-black cursor-pointer">ค้นหา</li>
                             </Link>
-                        <Link href={"reviwe"}>
+                        <Link href={"review"}>
                             <li className="hover:text-black transition border-b-2 border-white hover:border-black cursor-pointer">รีวิว</li>
                             </Link>
                         <Link href={"table"}>
