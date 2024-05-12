@@ -1,32 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import CourseList from './CourseList'; // Assuming CourseList component is imported
 
-export default function App() {
-  return (
-      <div className="mb-3 xl:w-96">
-          <div className="relative mb-4 flex w-full flex-wrap items-stretch">
-              <input
-                  type="search"
-                  className="relative m-0 block flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                  placeholder="Search"
-                  aria-label="Search"
-                  aria-describedby="button-addon2" />
+export default function Searchbar() {
+    const [query, setQuery] = useState("");
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-              {/* <!--Search icon--> */}
-              <span
-                  className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200"
-                  id="basic-addon2">
-                  <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="h-5 w-5">
-                      <path
-                          fillRule="evenodd"
-                          d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                          clipRule="evenodd" />
-                  </svg>
-              </span>
-          </div>
-      </div>
-  );
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const res = await fetch(`http://localhost:3000/api/courses?query=${query}`);
+                if (!res.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+                const searchData = await res.json();
+                setData(searchData);
+                setError(null);
+            } catch (error) {
+                setError("Failed to fetch data");
+            }
+            setLoading(false);
+        };
+
+        // Only trigger fetchData if query length is more than 2 characters
+        if (query.length > 2) {
+            fetchData();
+        } else {
+            // Clear data if query length is less than 3 characters
+            setData([]);
+        }
+    }, [query]);
+
+    return (
+        <div>
+            <div className="app">
+                <input
+                    className="search"
+                    placeholder="Search..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value.toLowerCase())}
+                />
+                {loading && <p>Loading...</p>}
+                {error && <p>Error: {error}</p>}
+                {!loading && !error && <CourseList data={data} />}
+            </div>
+        </div>
+    );
 }

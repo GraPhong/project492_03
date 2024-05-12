@@ -1,5 +1,5 @@
 import EditTopicForm from "@/components/EditTopicForm";
-import PostTopic from "@/components/PostTopic";
+import PostTopic from "@/components/PostReview";
 
 const getTopicById = async (id: any) => {
   try {

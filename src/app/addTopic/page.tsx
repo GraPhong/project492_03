@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import React from "react";
-import PostTopic from "../../components/PostTopic";
+
 
 export default function AddTopic() {
   const [title, setTitle] = useState("");

@@ -11,7 +11,6 @@ type Props = {}
 export default function Table({}: Props) {
   return (
     <div className='items-center '>
-
     </div>
   )
 }

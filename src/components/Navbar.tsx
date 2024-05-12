@@ -11,7 +11,7 @@ const Navbar = () => {
     const handleClick = () => Setclick(!click);
     const content = <>
         <div className="lg:hidden z-50 block absolute top-20 w-full left-0 right-0 bg-violet-400 backdrop-blur-lg bg-opacity-30 transition">
-        <ul className="text-center text-xl p-10">
+            <ul className="text-center text-xl p-10">
                         <Link href={"home"}>
                             <li className="my-4 py-4 boder-b boder-pink-200 hover:text-pink-950 transition-all duration-150 hover bg:pink-200 hover:roundedhover:text-pink-400 border-b-2 border-white hover:border-pink-500 cursor-pointer">ค้นหา</li>
                             </Link>
@@ -27,7 +27,7 @@ const Navbar = () => {
                         <Link href={"curriculum"}>
                             <li className="my-4 py-4 boder-b boder-pink-200 hover:text-pink-950 transition-all duration-150 hover bg:pink-200 hover:roundedhover:text-pink-400 border-b-2 border-white hover:border-pink-500 cursor-pointer">หลักสูตร</li>
                             </Link>
-                    </ul>
+            </ul>
         </div>
     </>
     return (

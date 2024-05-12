@@ -1,35 +1,94 @@
-import Image from "next/image"
+"use client"
+import React, { useState } from 'react';
+import { NAV_LINKS } from '../constants';
 import Link from "next/link"
-import React from "react"
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react"
-import { UrlObject } from "url"
-import { NAV_LINKS } from "../constants"
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <nav className=" bg-violet-400 flexBetween  padding-container relative z-30 ">
-        <div className="h-10vh flex justify-between lg:py-5 px-20 py-8 border-b  items-center flex-l">
+    <nav className="bg-violet-400">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-20">
+          <div className="flex items-center">
             <Link className="text-4xl font-bold text-white" href={"home"}>CMU Assist</Link>
-            <ul className="text-2xl font-bold text-white hidden h-full gap-12 lg:flex">
-                {NAV_LINKS.map((link: { href: string | UrlObject; key: Key | null | undefined; label: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined }) => (
-                    <Link href={link.href} key={link.key} className="my-3 py-5 boder-b boder-white hover:text-black flexCenter cursor-pointer pb-0.5 transition-all hover:font-bold border-b-2 border-white hover:border-black ">
-                        {link.label}
-                    </Link>
+            <div className="hidden sm:block sm:ml-6">
+              <div className="flex space-x-4">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.key}
+                    href={link.href}
+                    className="hover:text-black text-white  px-3 py-2 rounded-md text-2xl font-medium"
+                  >
+                    {link.label}
+                  </a>
                 ))}
-            </ul>
-
-        <Image 
-        src="menu.svg"
-        alt="menu"
-        width={32}
-        height={32}
-        className="flex-end inline-block cursor-pointer lg:hidden"
-        />
+              </div>
+            </div>
+          </div>
+          <div className="-mr-2 flex items-center sm:hidden">
+            <button
+              onClick={toggleMenu}
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className={`${isOpen ? 'hidden' : 'block'} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                className={`${isOpen ? 'block' : 'hidden'} h-6 w-6`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
 
-        
+      <div className={`${isOpen ? 'block' : 'hidden'} sm:hidden`} id="mobile-menu">
+        <div className="px-2 pt-2 pb-3 space-y-1">
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.key}
+              href={`#${link.href}`}
+              className="text-white hover:bg-violet-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

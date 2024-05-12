@@ -1,32 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function App() {
+function SearchBar() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
   return (
-      <div className="mb-3 xl:w-96">
-          <div className="relative mb-4 flex w-full flex-wrap items-stretch">
-              <input
-                  type="search"
-                  className="relative m-0 block flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                  placeholder="Search"
-                  aria-label="Search"
-                  aria-describedby="button-addon2" />
+    <form className="w-full flex items-center max-w-lg mx-auto">   
+        <label className="sr-only">Search</label>
+        <div className="relative w-full">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
+            <input type="text" id="voice-search" className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="รหัสวิชา/ชื่อวิชา" required />
+            <button type="button" className="absolute inset-y-0 end-0 flex items-center pe-3"></button>
+        </div>
+        <button type="submit" className="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+    </form>
 
-              {/* <!--Search icon--> */}
-              <span
-                  className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200"
-                  id="basic-addon2">
-                  <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="h-5 w-5">
-                      <path
-                          fillRule="evenodd"
-                          d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                          clipRule="evenodd" />
-                  </svg>
-              </span>
-          </div>
-      </div>
   );
 }
+
+export default SearchBar;
