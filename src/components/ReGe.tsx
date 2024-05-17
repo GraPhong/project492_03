@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import Searchbar from './Searchbar';
+import Searchbar from './Searchbar3';
 
 const Card = ({ title, description }) => (
   <div style={{ background: 'pink', color: 'black', borderRadius: '8px', overflow: 'hidden', marginBottom: '20px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }}>

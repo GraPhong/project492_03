@@ -1,5 +1,4 @@
 import Link from "next/link";
-import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import { HiOutlineThumbUp } from "react-icons/hi";
 import React from "react";
@@ -38,7 +37,6 @@ export default async function ReviewList() {
           </div>
 
           <div className="flex gap-2">
-            <RemoveBtn id={t._id} />
             <Link href={`/editTopic/${t._id}`}>
               <HiPencilAlt size={24} />
             </Link>

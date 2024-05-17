@@ -10,13 +10,14 @@ export default function AddReview() {
   const [courseName, setCourseName] = useState("");
   const [review, setReview] = useState("");
   const [score, setScore] = useState("");
+  const [like, setLike] = useState("");
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!courseNo || !courseName || !review|| !score) {
+    if (!courseNo || !courseName || !review || !score || !like) {
       alert("Data are required.");
       return;
     }
@@ -27,11 +28,11 @@ export default function AddReview() {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ courseNo, courseName, review, score }),
+        body: JSON.stringify({ courseNo, courseName, review, score, like }),
       });
 
       if (res.ok) {
-        router.push("/");
+        router.push("/review");
       } else {
         throw new Error("Failed to create a review");
       }
@@ -43,7 +44,7 @@ export default function AddReview() {
   return (
     <div className='max-w-3xl mx-auto p-4'>
       <PostReview/>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 py-5">
+      <form  onSubmit={handleSubmit} className="flex flex-col gap-3 py-5">
         <input
           onChange={(e) => setCourseNo(e.target.value)}
           value={courseNo}
@@ -75,6 +76,15 @@ export default function AddReview() {
           type="text"
           placeholder="score"
         />
+
+        <input
+          onChange={(e) => setLike(e.target.value)}
+          value={like}
+          className="border border-slate-500 px-8 py-2"
+          type="text"
+          placeholder="like"
+        />
+
 
         <button
           type="submit"

@@ -5,7 +5,8 @@ const reviewSchema = new Schema(
     courseNo: String,
     courseName: String,
     review: String,
-    score: String
+    score: Number,
+    like: Number
   },
   {
     timestamps: true,

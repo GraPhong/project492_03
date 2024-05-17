@@ -3,9 +3,9 @@ import Review from "@/models/review";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { courseNo, courseName, review, score } = await request.json();
+  const { courseNo, courseName, review, score, like} = await request.json();
   await connectMongoDB();
-  await Review.create({ courseNo, courseName, review, score });
+  await Review.create({ courseNo, courseName, review, score, like });
   return NextResponse.json({ message: "Review Created" }, { status: 201 });
 }
 
