@@ -2,11 +2,28 @@ import mongoose, { Schema } from "mongoose";
 
 const reviewSchema = new Schema(
   {
-    courseNo: String,
-    courseName: String,
-    review: String,
-    score: Number,
-    like: Number
+    courseNo: {
+      type: String,
+      required: true,
+    },
+    courseName: {
+      type: String,
+      required: true,
+    },
+    review: {
+      type: String,
+      required: true,
+    },
+    score: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 5
+    },
+    like: {
+      type: Number,
+      default: 0
+    }
   },
   {
     timestamps: true,

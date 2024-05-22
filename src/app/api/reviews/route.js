@@ -9,10 +9,24 @@ export async function POST(request) {
   return NextResponse.json({ message: "Review Created" }, { status: 201 });
 }
 
-export async function GET() {
+
+export async function GET(req) {
   await connectMongoDB();
+  const { searchParams } = new URL(req.url);
+  const q = searchParams.get('q');
+
+  const keys = ["courseNo", "courseName"];
+
+  const search = (data) => {
+    return data.filter((item) =>
+      keys.some((key) => item[key].toLowerCase().includes(q.toLowerCase()))
+    );
+  };
+
   const reviews = await Review.find();
-  return NextResponse.json({ reviews });
+  const result = q ? search(reviews).slice(0, 10) : reviews.slice(0, 10);
+
+  return NextResponse.json({ reviews: result });
 }
 
 export async function DELETE(request) {

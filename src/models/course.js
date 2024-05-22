@@ -15,24 +15,12 @@ const courseSchema = new Schema(
             roomLab: String,
             examTime: String,
             teacher: [{
-                id: String,
-                titleTH: String,
-                titleEN: String,
-                firstNameTH: String,
-                firstNameEN: String,
-                lastNameTH: String,
-                lastNameEN: String,
-                type: String
+                type: String,
+                fullName: String
             }],
             coTeachers: [{
-                id: String,
-                titleTH: String,
-                titleEN: String,
-                firstNameTH: String,
-                firstNameEN: String,
-                lastNameTH: String,
-                lastNameEN: String,
-                type: String
+                type: String,
+                fullName: String
             }]
           }
         ]

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import CourseList from "@/components/CourseList.tsx"
+import CheckBox from "./CheckBox";
 
 const TableResultSearch = () => {
   const [query, setQuery] = useState("");
@@ -15,14 +16,27 @@ const TableResultSearch = () => {
   }, [query]);
 
   return (
-    <div className="app">
+    <div style={{ display: 'flex',height: '100vh' }}>
+      {/* Left side - Sidebar */}
+      <div style={{ flex: '0 0 900px', padding: '20px' }}>
+      <div className="app">
       <input
-        className="search"
+        className="search form-input block w-full px-4 py-2 border border-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
         placeholder="Search..."
         onChange={(e) => setQuery(e.target.value.toLowerCase())}
       />
-      <CourseList courses={data} />
+          <CourseList courses={data} />
+        </div>
+      </div>
+
+      {/* Right side - Display Website */}
+      <div style={{ flex: 1, padding: '20px' }}>
+        <div className="p-4 border border-slate-300 my-3 ">
+          <CheckBox/>
+        </div> 
+      </div>
     </div>
+
   );
 }
 
