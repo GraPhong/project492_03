@@ -4,7 +4,7 @@ const CourseList = ({ courses }) => {
   return (
     <div>
       {courses.map((course) => (
-        <div key={course._id} className=" p-4 border border-slate-300 my-3">
+        <div key={course._id} className=" p-4 border border-slate-300 my-4">
           <div className="flex justify-between">
             <div className="font-bold text-2xl">
               {course.courseNo} {course.courseName}
